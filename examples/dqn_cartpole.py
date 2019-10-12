@@ -1,3 +1,5 @@
+import sys
+
 import numpy as np
 import gym
 import pandas as pd
@@ -57,7 +59,11 @@ def build_train_test(timesteps=50000, display=False):
 
 if __name__ == "__main__":
 
-    timesteps = [10**i for i in range(2, 8)] + [50**i for i in range(2, 8)]
+    assert len(sys.argv) > 1
+
+    max_degree = int(sys.argv[1])
+
+    timesteps = [10**i for i in range(2, max_degree)] + [5 * 10**i for i in range(2, max_degree)]
 
     output = pd.Series(index=timesteps)
     for t in timesteps:
